@@ -1,0 +1,190 @@
+<!-- <swiper class="headerBanner" indicator-dots="{{indicatorDots}}" circular="{{circular}}" autoplay="{{autoplay}}"
+        interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}"
+        indicator-active-color="{{indicatorActiveColor}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{item}}">
+        <swiper-item>
+            <image mode="aspectFit" src="{{item}}" class="slide-image"/>
+        </swiper-item>
+    </block>
+</swiper> -->
+
+<view class="headerBanner" >
+<view class="logo" wx:if="{{!showFlag}}">查垃圾</view>
+<image  wx:if="{{showFlag}}" mode="aspectFit" src="{{randomImgUrl}}"></image>
+</view>
+<!--input.wxml-->
+<view class="search section">
+    <input class="input-txt" bindinput="getKeyWord" bindfocus="showImg" bindblur="hiddenImg" placeholder="垃圾名称..."  value="{{keyWord}}"/>
+    <button class="search-btn" bindtap="search" data-key="{{keyWord}}"> 查 询</button>
+</view>
+<!-- 查询结果展示 -->
+<!-- 1 (上海可回收垃圾)
+    2 (上海有害垃圾)
+    4 (上海湿垃圾)
+    8 (上海干垃圾) -->
+<view>
+    <view wx:if="{{result}}">
+        <view class="result-view" wx:if="{{result.categroy==1}}">
+            <view class="result-title">查询结果
+                <text class="result-name">{{result.name}}</text>
+                是 :
+            </view>
+            <view>
+                <text class="result-cate">可回收垃圾</text>
+            </view>
+            <view class="result-des">
+                <view class="result-img">
+                    <image mode="aspectFit" src="/assets/images/cate_1.jpg"></image>
+                </view>
+                <view class="result-content">
+                    <text class="result-title">可回收垃圾是指:</text>
+                    <text>废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物</text>
+                </view>
+            </view>
+            <view class="result-adv">
+                <view class="result-title">可回收垃圾投放要求</view>
+                <view class="result-adv-content">
+                    <view>
+                        <text class="dot"></text>
+                        轻投轻放
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        清洁干燥,避免污染
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        废纸尽量平整
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        立体包装物请清空内容物,清洁后压扁投放
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        有尖锐边角的,应包裹后投放
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="result-view" wx:elif="{{result.categroy==2}}">
+            <view>查询结果
+                <text class="result-name">{{result.name}}</text>
+                是 :
+            </view>
+            <view>
+                <text class="result-cate" style="background-color:#d54730">有害垃圾</text>
+            </view>
+            <view class="result-des">
+                <view class="result-img">
+                    <image mode="aspectFit" src="/assets/images/cate_2.jpg"></image>
+                </view>
+                <view class="result-content">
+                    <text class="result-title">有害垃圾是指:</text>
+                    <text>废电池、废灯管、废药品、废油漆及其容器等对人体健康或者自然环境造成直接或者潜在危害的生活废弃物</text>
+                </view>
+            </view>
+            <view class="result-adv">
+                <view class="result-title">有害垃圾投放要求</view>
+                <view class="result-adv-content">
+                    <view>
+                        <text class="dot"></text>
+                        投放时请注意轻放
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        易破损的请连带包装或包裹后轻放
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        如易挥发,请密封后投放
+                    </view>
+                </view>
+
+            </view>
+
+        </view>
+        <view class="result-view" wx:elif="{{result.categroy==4}}">
+            <view class="result-title">查询结果
+                <text class="result-name">{{result.name}}</text>
+                是 :
+            </view>
+            <view>
+                <text class="result-cate" style="background-color:#5f4232">湿垃圾</text>
+            </view>
+            <view class="result-des">
+                <view class="result-img">
+                    <image mode="aspectFit" src="/assets/images/cate_4.jpg"></image>
+                </view>
+                <view class="result-content">
+                    <text class="result-title">湿垃圾是指:</text>
+                    <text>即易腐垃圾,是指食材废料,剩菜剩饭、过期食品、瓜皮果核、花卉绿植、中药药渣等生物质生活废弃物</text>
+                </view>
+            </view>
+            <view class="result-adv">
+                <view class="result-title">湿垃圾投放要求</view>
+                <view class="result-adv-content">
+                    <view>
+                        <text class="dot"></text>
+                        纯流质的食物垃圾,如牛奶等,应直接倒进下水口
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        有包装物的湿垃圾应将包装物去除后分类投放,包装物请投放到对应的可回收物或干垃圾容器
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="result-view" wx:elif="{{result.categroy==8}}">
+            <view class="result-title">查询结果
+                <text class="result-name">{{result.name}}</text>
+                是 :
+            </view>
+            <view>
+                <text class="result-cate" style="background-color:#2b2b29">干垃圾</text>
+            </view>
+            <view class="result-des">
+                <view class="result-img">
+                    <image mode="aspectFit" src="/assets/images/cate_8.jpg"></image>
+                </view>
+                <view class="result-content">
+                    <text class="result-title">干垃圾是指:</text>
+                    <text>即其它垃圾,是指除可回收物、有害垃圾、湿垃圾以外的其它生活废弃物</text>
+                </view>
+            </view>
+            <view class="result-adv">
+                <view class="result-title">干垃圾投放要求</view>
+                <view class="result-adv-content">
+                    <view>
+                        <text class="dot"></text>
+                        尽量沥干水分
+                    </view>
+                    <view>
+                        <text class="dot"></text>
+                        难以辨识类别的生活垃圾投入干垃圾容器内
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="result-view" wx:elif="{{result.code==10001}}">
+            <text class="result-cate" style="background-color:#00b26a">{{result.msg}}</text>
+        </view>
+    </view>
+    <view class="resultArr" wx:if="{{resultArr.length&&!result}}">
+        <view class="result-title">相似结果:</view>
+        <view class="resultArr-item" wx:for="{{resultArr}}" wx:key="{{item.name}}" bindtap="search" data-key="{{item.name}}">
+          <view >
+            {{item.name}}
+          </view>
+        </view>
+    </view>
+</view>
+<view class="image-box" wx:if="{{!result&&!resultArr.length}}">
+<image mode="aspectFill" src="/assets/images/bg_4.1.jpg"></image>
+<view>
+  <view class="title">查查看,</view>
+  <view class="title">你是什么垃圾?</view>
+</view>
+</view>

@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/ask/ask"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00b26a",
+    "navigationBarTitleText": "你是什么垃圾",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true,
+    "backgroundColorTop":"#1f2534"
+  },
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "navigateToMiniProgramAppIdList": [
+    "wxe5f52902cf4de896"
+  ]
+}
+
