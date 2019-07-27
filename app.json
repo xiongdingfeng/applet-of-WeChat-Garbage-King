@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/ask/ask"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,14 +10,6 @@
     "enablePullDownRefresh":true,
     "backgroundColorTop":"#1f2534"
   },
-  "sitemapLocation": "sitemap.json",
-  "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
-  },
-  "debug": false,
-  "navigateToMiniProgramAppIdList": [
-    "wxe5f52902cf4de896"
-  ]
+  "sitemapLocation": "sitemap.json"
 }
 
