@@ -15939,7 +15939,10 @@ Page({
     });
     // console.log(this.data.showFlag)
   },
-  randomImg(){
-
+  reset(){
+    this.setData({
+      result: null,
+      resultArr: [],
+    })
   }
 })

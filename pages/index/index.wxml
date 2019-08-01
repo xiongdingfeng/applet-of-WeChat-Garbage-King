@@ -9,7 +9,7 @@
 </swiper> -->
 
 <view class="headerBanner" >
-<view class="logo" wx:if="{{!showFlag}}">查垃圾</view>
+<view class="logo" wx:if="{{!showFlag}}" bindtap="reset">查垃圾</view>
 <image  wx:if="{{showFlag}}" mode="aspectFit" src="{{randomImgUrl}}"></image>
 </view>
 <!--input.wxml-->
@@ -167,10 +167,10 @@
                 </view>
             </view>
         </view>
-
+        <!-- 
         <view class="result-view" wx:elif="{{result.code==10001}}">
             <text class="result-cate" style="background-color:#00b26a">{{result.msg}}</text>
-        </view>
+        </view> -->
     </view>
     <view class="resultArr" wx:if="{{resultArr.length&&!result}}">
         <view class="result-title">相似结果:</view>
@@ -181,9 +181,13 @@
         </view>
     </view>
 </view>
-<view class="image-box" wx:if="{{!result&&!resultArr.length}}">
+<view class="image-box" wx:if="{{!result&&!resultArr.length||result.code==10001}}">
 <image mode="aspectFill" src="/assets/images/bg_4.1.jpg"></image>
-<view>
+<view wx:if="{{result.code==10001}}">
+  <view class="title">404警告,</view>
+  <view class="title">没有查到东西</view>
+</view>
+<view wx:else>
   <view class="title">查查看,</view>
   <view class="title">你是什么垃圾?</view>
 </view>

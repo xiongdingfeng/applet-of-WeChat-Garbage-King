@@ -5,7 +5,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00b26a",
-    "navigationBarTitleText": "你是什么垃圾",
+    "navigationBarTitleText": "查查看,你是什么垃圾",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh":true,
     "backgroundColorTop":"#1f2534"
